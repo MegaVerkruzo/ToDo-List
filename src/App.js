@@ -9,13 +9,15 @@ function App() {
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState('');
 
-    useEffect( () => {
-        db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-            setTodos(snapshot.docs.map(doc => doc.data().task))
-        })
-    }, [todos]);
+    useEffect(() => {
+        db.collection('todos')
+            .orderBy('timestamp', 'desc')
+            .onSnapshot(snapshot => {
+                setTodos(snapshot.docs.map(doc => ({id: doc.id, todo: doc.data().task})))
+            })
+    }, []);
 
-    const todosArray = todos.map(el => <Task text={el}/>)
+    const todosArray = todos.map(el => <Task todo={el}/>)
 
     const addTask = event => {
         event.preventDefault();
@@ -43,7 +45,7 @@ function App() {
             </Button>
 
             <ul>
-                { todosArray }
+                {todosArray}
             </ul>
         </div>
     );
