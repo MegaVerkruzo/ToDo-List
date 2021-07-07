@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./App.css";
 import Task from "./component/Task/Task";
 import {Button, FormControl, Input, InputLabel, List} from "@material-ui/core";
-import db from './firebase'
+import db from './index'
 import firebase from 'firebase';
 
 function App() {

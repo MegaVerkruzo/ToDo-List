@@ -1,8 +1,10 @@
 import React from 'react';
 import {Button, List, ListItem, ListItemText} from "@material-ui/core";
 import classes from './Task.module.css';
-import db from './../../firebase';
+import db from './../../index';
 import firebase from "firebase";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
 
 const Task = (props) => {
 
@@ -12,8 +14,8 @@ const Task = (props) => {
 
     return (
         <ListItem className={classes.task__todos}>
-            <Button variant="contained" color="secondary" onClick={ deleteTask }>DELETE ME</Button>
-            <ListItemText className={classes.task__todos_text} primary={props.todo.todo} secondary="Deadline"/>
+            <DeleteForeverIcon style={{cursor: 'pointer'}}onClick={ deleteTask } action />
+            <ListItemText className={classes.task__todos_text} primary={props.todo.todo}/>
         </ListItem>
     );
 }
